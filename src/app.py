@@ -3,7 +3,6 @@ import flask, json
 from flask import Flask, request
 app = Flask(__name__)
 
-
 todos = [
     { "label": "My first task", "done": False },
     { "label": "My second task", "done": False }
@@ -14,27 +13,13 @@ def hello_world():
     json_text = flask.jsonify(todos)
     return json_text
 
-
 @app.route('/todos', methods=['POST'])
 def add_new_todo():
     request_body = request.data
     decoded_object = json.loads(request_body)
     todos.append(decoded_object)
-    print("Incoming request with the following body", request_body)
+    print("Incoming request with the following body", decoded_object)
     return flask.jsonify(todos)
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
