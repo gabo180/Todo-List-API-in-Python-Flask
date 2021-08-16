@@ -1,6 +1,6 @@
-import flask
+import flask, json
 
-from flask import Flask
+from flask import Flask, request
 app = Flask(__name__)
 
 
@@ -15,7 +15,13 @@ def hello_world():
     return json_text
 
 
-
+@app.route('/todos', methods=['POST'])
+def add_new_todo():
+    request_body = request.data
+    decoded_object = json.loads(request_body)
+    todos.append(decoded_object)
+    print("Incoming request with the following body", request_body)
+    return flask.jsonify(todos)
 
 
 
