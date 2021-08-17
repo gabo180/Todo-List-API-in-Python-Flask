@@ -21,7 +21,14 @@ def add_new_todo():
     print("Incoming request with the following body", decoded_object)
     return flask.jsonify(todos)
 
+@app.route('/todos/<int:position>', methods=['DELETE'])
+def delete_todo(position):
+    todos.pop(position)
+    print("This is the position to delete: ",position)
+    return flask.jsonify(todos)
 
+@app.route('/todos', methods=["PUT"])
+def 
 
 # These two lines should always be at the end of your app.py file.
 if __name__ == '__main__':
